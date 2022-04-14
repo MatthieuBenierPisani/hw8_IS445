@@ -1,0 +1,22 @@
+const paintingsElement = document.getElementById("paintings");
+
+fetch('https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/paintings.json')
+.then(response => response.json())
+.then(paintings => {
+    paintings.forEach(painting => {
+    const paintingElement = document.createElement("tr");
+    paintingElement.innerHTML = `<td>
+        ${painting.name}
+        </td>
+        <td>
+        ${painting.year}
+        </td>
+        <td>
+        ${painting.artist}
+        </td>`;
+    paintingsElement.appendChild(paintingElement);
+    });
+})
+.catch(err => {
+    console.error(err.message);
+});
